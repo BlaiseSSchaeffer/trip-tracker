@@ -4,6 +4,7 @@
   "description": "Trip tracking and planning at its best!",
   "main": "src/index.ts",
   "scripts": {
+    "build": "tsc",
     "commitlint": "commitlint",
     "dev": "nodemon",
     "test": "echo \"No test specified\" && exit 0"
