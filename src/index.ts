@@ -110,14 +110,14 @@ const resolvers = {
   }
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
+// const server = new ApolloServer({ typeDefs, resolvers });
 const app = express();
 
-server.applyMiddleware({ app });
+// server.applyMiddleware({ app });
 
 const port = process.env.PORT || 4001;
 app.listen({ port }, () => {
-  console.log(
-    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
-  );
+  // console.log(
+  //   `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
+  // );
 });
