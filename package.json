@@ -7,6 +7,7 @@
     "build": "tsc",
     "commitlint": "commitlint",
     "dev": "nodemon",
+    "prettier": "pretty-quick",
     "test": "echo \"No test specified\" && exit 0"
   },
   "repository": {
