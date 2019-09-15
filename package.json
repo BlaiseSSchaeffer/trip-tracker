@@ -8,6 +8,7 @@
     "commitlint": "commitlint",
     "dev": "nodemon",
     "prettier": "pretty-quick",
+    "start": "node build/index.js",
     "test": "echo \"No test specified\" && exit 0"
   },
   "repository": {
