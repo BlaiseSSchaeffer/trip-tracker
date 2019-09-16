@@ -2,7 +2,7 @@ import express from "express";
 import config from "config";
 import { ApolloServer, gql } from "apollo-server-express";
 import walk from "recursive-readdir";
-const exec = require("child_process").exec;
+import run from "../utils/run";
 
 const typeDefs = gql`
   enum STATE {
@@ -116,9 +116,11 @@ const resolvers = {
 walk(__dirname, (error, files) => {
   if (error) throw error;
 
-  exec("pwd", (error: any, stdout: any, stderr: any) => {
-    console.log("Working Directory:", stdout);
-  });
+  // run("pwd");
+  // run("ls");
+  run(
+    "cd ../ && pwd && ls && cd /Users/blaiseschaeffer/Documents/GitHub/GraphQL/trip-tracker && ls && pwd"
+  );
 
   const schemaFiles = files!.filter(file => file.endsWith(".graphql"));
   console.log("schemaFiles:", schemaFiles);
