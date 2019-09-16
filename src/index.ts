@@ -2,7 +2,6 @@ import express from "express";
 import config from "config";
 import { ApolloServer, gql } from "apollo-server-express";
 import walk from "recursive-readdir";
-import run from "../utils/run";
 
 const typeDefs = gql`
   enum STATE {
@@ -116,7 +115,7 @@ const resolvers = {
 walk(__dirname, (error, files) => {
   if (error) throw error;
 
-  run("pwd");
+  console.log(__dirname);
 
   const schemaFiles = files!.filter(file => file.endsWith(".graphql"));
   console.log("schemaFiles:", schemaFiles);
