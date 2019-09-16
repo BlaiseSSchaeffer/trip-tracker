@@ -4,7 +4,8 @@
   "description": "Trip tracking and planning at its best!",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run buildSchema && tsc",
+    "buildSchema": "find src -name 'typeDefs.graphql' -exec paste {} > build/schema.graphql \\;",
     "commitlint": "commitlint",
     "dev": "nodemon",
     "prettier": "pretty-quick",

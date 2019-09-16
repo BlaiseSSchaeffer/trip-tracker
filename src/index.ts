@@ -125,7 +125,7 @@ walk(__dirname, (error, files) => {
 
   server.applyMiddleware({ app });
 
-  const port = process.env.PORT || config.get("port");
+  const port = process.env.PORT || config.get("port") || 4002;
   app.listen({ port }, () => {
     console.log(`🚀 Server ready on port ${port}`);
   });
