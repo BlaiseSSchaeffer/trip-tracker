@@ -116,11 +116,8 @@ const resolvers = {
 walk(__dirname, (error, files) => {
   if (error) throw error;
 
-  // run("pwd");
-  // run("ls");
-  run(
-    "cd ../ && pwd && ls && cd /Users/blaiseschaeffer/Documents/GitHub/GraphQL/trip-tracker && ls && pwd"
-  );
+  run("pwd");
+  run("ls");
 
   const schemaFiles = files!.filter(file => file.endsWith(".graphql"));
   console.log("schemaFiles:", schemaFiles);
