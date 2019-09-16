@@ -118,5 +118,5 @@ server.applyMiddleware({ app });
 
 const port = process.env.PORT || config.get("port");
 app.listen({ port }, () => {
-  console.log(`Server ready on port ${port}`);
+  console.log(`🚀 Server ready on port ${port}`);
 });
