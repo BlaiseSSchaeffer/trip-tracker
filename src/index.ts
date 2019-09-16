@@ -1,6 +1,7 @@
 import express from "express";
 import config from "config";
 import { ApolloServer, gql } from "apollo-server-express";
+import walk from "recursive-readdir";
 
 const typeDefs = gql`
   enum STATE {
@@ -111,12 +112,19 @@ const resolvers = {
   }
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
-const app = express();
+walk(__dirname, (error, files) => {
+  if (error) throw error;
 
-server.applyMiddleware({ app });
+  const schemaFiles = files!.filter(file => file.endsWith(".graphql"));
+  console.log("schemaFiles:", schemaFiles);
 
-const port = process.env.PORT || config.get("port");
-app.listen({ port }, () => {
-  console.log(`🚀 Server ready on port ${port}`);
+  const server = new ApolloServer({ typeDefs, resolvers });
+  const app = express();
+
+  server.applyMiddleware({ app });
+
+  const port = process.env.PORT || config.get("port");
+  app.listen({ port }, () => {
+    console.log(`🚀 Server ready on port ${port}`);
+  });
 });
