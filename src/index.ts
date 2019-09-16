@@ -1,4 +1,5 @@
-import * as express from "express";
+import express from "express";
+import config from "config";
 import { ApolloServer, gql } from "apollo-server-express";
 
 const typeDefs = gql`
@@ -115,9 +116,7 @@ const app = express();
 
 server.applyMiddleware({ app });
 
-const port = 4001;
+const port = process.env.PORT || config.get("port");
 app.listen({ port }, () => {
-  console.log(
-    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
-  );
+  console.log(`🚀 Server ready on port ${port}`);
 });

@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ESNext", // Targets latest supported ES proposed features: https://github.com/tc39/proposals
+    "target": "esnext", // Targets latest supported ES proposed features: https://github.com/tc39/proposals
     "lib": ["esnext"],
     "baseUrl": "./",
     "outDir": "build",
     "allowJs": true,
     // "skipLibCheck": true,
-    // "esModuleInterop": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     // "resolveJsonModule": true,
     // "jsx": "preserve",
