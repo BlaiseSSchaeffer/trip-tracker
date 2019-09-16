@@ -1,122 +1,29 @@
 import express from "express";
 import config from "config";
-import { ApolloServer, gql } from "apollo-server-express";
+import { ApolloServer, gql, makeExecutableSchema } from "apollo-server-express";
+import walk from "recursive-readdir";
+import loadSchema from "./utils/loadSchema";
+import userResolvers from "./user/resolvers";
+import addressResolvers from "./address/resolvers";
+import merge from "lodash.merge";
 
-const typeDefs = gql`
-  enum STATE {
-    AL
-    AK
-    AS
-    AZ
-    AR
-    CA
-    CO
-    CT
-    DE
-    DC
-    FM
-    FL
-    GA
-    GU
-    HI
-    ID
-    IL
-    IN
-    IA
-    KS
-    KY
-    LA
-    ME
-    MH
-    MD
-    MA
-    MI
-    MN
-    MS
-    MO
-    MT
-    NE
-    NV
-    NH
-    NJ
-    NM
-    NY
-    NC
-    ND
-    MP
-    OH
-    OK
-    OR
-    PW
-    PA
-    PR
-    RI
-    SC
-    SD
-    TN
-    TX
-    UT
-    VT
-    VI
-    VA
-    WA
-    WV
-    WI
-    WY
-    AE
-    AP
-    AA
-  }
+walk(config.get("walk_for_schema"), (error, files) => {
+  if (error) throw error;
 
-  type Address {
-    id: ID!
-    buildingNumber: Int!
-    streetName: String!
-    city: String!
-    state: STATE!
-    zip: Int!
-  }
+  const typeDefs = loadSchema(files);
+  const resolvers = merge(userResolvers, addressResolvers);
+  const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers
+  });
 
-  type User {
-    id: ID!
-    firstName: String!
-    lastName: String!
-    address: Address
-  }
+  const server = new ApolloServer({ schema });
+  const app = express();
 
-  type Query {
-    users: [User]
-  }
-`;
+  server.applyMiddleware({ app });
 
-const resolvers = {
-  Query: {
-    users: () => {
-      return [
-        {
-          id: 1,
-          firstName: "Blaise",
-          lastName: "Schaeffer",
-          address: {
-            id: 1,
-            buildingNumber: 1600,
-            streetName: "Pennsylvania Ave NW",
-            city: "Washington",
-            state: "DC",
-            zip: 20500
-          }
-        }
-      ];
-    }
-  }
-};
-
-const server = new ApolloServer({ typeDefs, resolvers });
-const app = express();
-
-server.applyMiddleware({ app });
-
-const port = process.env.PORT || config.get("port");
-app.listen({ port }, () => {
-  console.log(`🚀 Server ready on port ${port}`);
+  const port = process.env.PORT || config.get("port") || 4002;
+  app.listen({ port }, () => {
+    console.log(`🚀 Server ready on port ${port}`);
+  });
 });
