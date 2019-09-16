@@ -4,11 +4,10 @@
   "description": "Trip tracking and planning at its best!",
   "main": "src/index.ts",
   "scripts": {
-    "build": "npm run initBuild && npm run buildSchema && tsc",
+    "build": "tsc && npm run buildSchema",
     "buildSchema": "find src -name 'typeDefs.graphql' -exec paste {} > build/schema.graphql \\;",
     "commitlint": "commitlint",
     "dev": "nodemon",
-    "initBuild": "mkdir -p build && touch build/schema.graphql",
     "prettier": "pretty-quick",
     "start": "node build/index.js",
     "test": "echo \"No test specified\" && exit 0"
