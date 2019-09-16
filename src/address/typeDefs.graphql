@@ -6,7 +6,6 @@ type Address {
   state: STATE!
   zip: Int!
 }
-
 enum STATE {
   AL
   AK

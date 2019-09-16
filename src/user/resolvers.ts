@@ -9,6 +9,15 @@ const resolvers = {
         }
       ];
     }
+  },
+  Mutation: {
+    addUser: () => {
+      return {
+        id: 1,
+        firstName: "Brent",
+        lastName: "Schaeffer"
+      };
+    }
   }
 };
 
