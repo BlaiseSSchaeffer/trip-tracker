@@ -117,7 +117,6 @@ walk(__dirname, (error, files) => {
   if (error) throw error;
 
   run("pwd");
-  run("ls");
 
   const schemaFiles = files!.filter(file => file.endsWith(".graphql"));
   console.log("schemaFiles:", schemaFiles);
