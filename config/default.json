@@ -1,3 +1,4 @@
 {
-  "port": 4002
+  "port": 4002,
+  "walk_for_schema": "src"
 }

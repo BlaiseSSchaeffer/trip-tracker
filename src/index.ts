@@ -112,10 +112,8 @@ const resolvers = {
   }
 };
 
-walk(__dirname, (error, files) => {
+walk(config.get("walk_for_schema"), (error, files) => {
   if (error) throw error;
-
-  console.log(__dirname);
 
   const schemaFiles = files!.filter(file => file.endsWith(".graphql"));
   console.log("schemaFiles:", schemaFiles);
