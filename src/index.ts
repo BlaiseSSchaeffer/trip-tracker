@@ -1,6 +1,6 @@
 import express from "express";
 import config from "config";
-import { ApolloServer, gql, makeExecutableSchema } from "apollo-server-express";
+import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
 import walk from "recursive-readdir";
 import loadSchema from "./utils/loadSchema";
 import userResolvers from "./user/resolvers";
