@@ -1,3 +1,4 @@
+import config from "config";
 import { InitOptions, Sequelize } from "sequelize";
 
 class SequelizeSettings {
@@ -33,9 +34,10 @@ class SequelizeSettings {
       // }
     }),
     // schema: process.env.DB_SCHEMA,
-    schema: "public",
-    createdAt: false,
-    updatedAt: false
+    underscored: config.get("db_underscored"),
+    schema: process.env.DB_SCHEMA || config.get("db_schema"),
+    createdAt: config.get("db_created_at"),
+    updatedAt: config.get("db_updated_at")
   };
 }
 

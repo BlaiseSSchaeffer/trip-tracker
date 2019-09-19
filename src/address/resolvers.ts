@@ -1,6 +1,8 @@
 import Address from "./address";
+import config from "config";
 import { INTEGER, STRING } from "sequelize";
 import SequelizeSettings from "../utils/sequelizeSettings";
+import User from "../user/user";
 
 Address.init(
   {
@@ -37,7 +39,8 @@ Address.init(
   },
   SequelizeSettings.initOptions(true, "addresses")
 );
-Address.sync({ force: false });
+// Address.hasMany(User);
+Address.sync({ force: config.get("sequelize_force_sync_tables") });
 
 const resolvers = {
   Query: {
