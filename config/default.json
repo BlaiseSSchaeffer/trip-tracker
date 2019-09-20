@@ -1,4 +1,9 @@
 {
-  "port": 4002,
-  "walk_for_schema": "src"
+  "db_port": 4002,
+  "db_schema": "public",
+  "db_underscored": true,
+  "db_created_at": false,
+  "db_updated_at": false,
+  "walk_for_graphql_schema": "src",
+  "sequelize_force_sync_tables": false
 }
