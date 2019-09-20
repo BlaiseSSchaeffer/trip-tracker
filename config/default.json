@@ -1,9 +1,15 @@
 {
-  "db_port": 4002,
+  "express_port": 4002,
+  "db_user": "blaise2s",
+  "db_password": "password",
+  "db_dialect": "postgres",
+  "db_host": "localhost",
+  "db_port": 5432,
+  "db_name": "trip_tracker",
   "db_schema": "public",
   "db_underscored": true,
   "db_created_at": false,
   "db_updated_at": false,
-  "walk_for_graphql_schema": "src",
+  "walk_for_graphql_schema": "src/",
   "sequelize_force_sync_tables": false
 }
