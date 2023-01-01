@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "apollo-server-express": "^2.9.3",
-    "config": "^3.2.2",
+    "config": "^3.3.8",
     "express": "^4.17.1",
     "lodash.merge": "^4.6.2",
     "pg": "^7.12.1",
